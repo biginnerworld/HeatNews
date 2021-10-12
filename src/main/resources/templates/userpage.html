@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:utext="${user.getUsername()}">Username</title>
+</head>
+<body style="margin: 0px; background-color: burlywood">
+<header style="padding: 15px; background-color: aquamarine">
+    <span style="font-size: 30px; margin-left: 15%"><a style="color: black; text-decoration: none" th:href="@{/}">HeatNews</a></span>
+    <span style="margin-right: 20px; margin-left: 20px; font-size: 28px">||</span>
+    <span style="font-size: 24px">Creating Page</span>
+</header>
+<div style="width: 80%; background-color: bisque; margin: 0 auto;">
+    <div style="width: 95%; margin: 15px auto;">
+        <h2 th:utext="${user.getUsername()}">Username</h2>
+        <p>
+            <span>Role: </span>
+            <span th:utext="${user.getRole().name()}"></span>
+        </p>
+        <p>
+            <span>ID: </span>
+            <span th:utext="${user.getId()}"></span>
+        </p>
+        <hr/>
+        <h3>Published news</h3>
+        <hr/>
+        <div th:each="article : ${user.getArticles()}">
+            <h4 th:utext="${article.getHeading()}">heading</h4>
+            <p th:utext="${article.getContent()}">content</p>
+            <p><a th:href="@{/{id}(id=${article.getId()})}">Read more..</a></p>
+            <p>
+                <a th:href="@{/{id}/like(id=${article.getId()})}">
+                    <span>Likes:</span>
+                    <span th:utext="${article.getLikes()}">*likes*</span>
+                </a>
+            </p>
+            <hr/>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+</head>
+<body style="margin: 0px; background-color: burlywood">
+<header style="padding: 15px; background-color: aquamarine">
+    <span style="font-size: 30px; margin-left: 15%"><a style="color: black; text-decoration: none" th:href="@{/}">HeatNews</a></span>
+    <span style="float: right; margin-top: 7px" th:unless="${authorized == 'true'}">
+        <span style="margin-right: 10px"><a th:href="@{/users/login}">Log in</a></span>
+        <span><a th:href="@{/users/registration}">Register</a></span>
+    </span>
+    <span style="float: right; margin-top: 7px" th:if="${authorized == 'true'}">
+        <span><a th:href="@{/logout}">Logout</a></span>
+    </span>
+</header>
+
+<div style="width: 80%; background-color: bisque; margin: 0 auto;">
+    <div style="width: 95%; margin: 15px auto;">
+        <div th:each="article : ${news}">
+            <h4 th:utext="${article.getHeading()}">heading</h4>
+            <p th:utext="${article.getContent()}">content</p>
+            <a th:href="@{/users/list/{id}(id=${article.getAuthorId()})}"><p th:utext="${article.getAuthorName()}">author</p></a>
+            <p><a th:href="@{/{id}(id=${article.getId()})}">Read more..</a></p>
+            <p>
+                <a th:href="@{/{id}/like(id=${article.getId()})}">
+                    <span>Likes:</span>
+                    <span th:utext="${article.getLikes()}">*likes*</span>
+                </a>
+            </p>
+            <hr/>
+        </div>
+        <p><a th:href="@{/newArticle}">Create new article..</a></p>
+    </div>
+</div>
+
+
+</body>
+</html>

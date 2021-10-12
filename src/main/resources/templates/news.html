@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>News</title>
+</head>
+<body>
+<form th:action="@{/users/login}" method="post">
+  <input type="submit" value="Login"/>
+</form>
+<form th:action="@{/users/logout}" method="post">
+  <input type="submit" value="Sign Out"/>
+</form>
+<h2>News</h2>
+<hr/>
+<div th:each="article : ${news}">
+  <h4 th:utext="${article.getHeading()}">heading</h4>
+  <p th:utext="${article.getContent()}">content</p>
+  <a th:href="@{/users/{id}(id=${article.getAuthorId()})}"><p th:utext="${article.getAuthorName()}">author</p></a>
+  <p><a th:href="@{/news/{id}(id=${article.getId()})}">Read more..</a></p>
+  <p>
+    <span>Likes:</span>
+    <span th:utext="${article.getLikes()}">*likes*</span>
+    <span style="margin-left: 30px">Dislikes:</span>
+    <span th:utext="${article.getDislikes()}" >*dislikes*</span>
+  </p>
+  <hr/>
+</div>
+<p><a th:href="@{/news/newArticle}">Create new article..</a></p>
+</body>
+</html>

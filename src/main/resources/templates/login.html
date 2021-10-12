@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Login</title>
+</head>
+<body style="margin: 0px; background-color: burlywood">
+<header style="padding: 15px; background-color: aquamarine">
+  <span style="font-size: 30px; margin-left: 15%"><a style="color: black; text-decoration: none" th:href="@{/}">HeatNews</a></span>
+  <span style="margin-right: 20px; margin-left: 20px; font-size: 28px">||</span>
+  <span style="font-size: 24px">Login Page</span>
+</header>
+<!--<div th:if="${param.error}">
+  Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+  You have been logged out.
+</div>-->
+<div style="width: 80%; background-color: bisque; margin: 0 auto;">
+  <div style="width: 95%; margin: 15px auto;">
+    <form th:action="@{/users/login}" method="post">
+      <div><label> User Name : <input type="text" name="username"/> </label></div>
+      <div><label> Password: <input type="password" name="password"/> </label></div>
+      <div><label for="remember-me"> Remember me <input type="checkbox" id="remember-me" name="remember-me"/></label></div>
+      <div><input type="submit" value="Sign In"/></div>
+    </form>
+    <form th:action="@{/users/registration}"><button type="submit">Registration</button></form>
+  </div>
+</div>
+
+</body>
+</html>

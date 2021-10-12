@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Article</title>
+</head>
+<body style="margin: 0px; background-color: burlywood">
+<header style="padding: 15px; background-color: aquamarine">
+    <span style="font-size: 30px; margin-left: 15%"><a style="color: black; text-decoration: none" th:href="@{/}">HeatNews</a></span>
+    <span style="float: right; margin-top: 7px" th:unless="${authorized == 'true'}">
+        <span style="margin-right: 10px"><a th:href="@{/users/login}">Log in</a></span>
+        <span><a th:href="@{/users/registration}">Register</a></span>
+    </span>
+    <span style="float: right; margin-top: 7px" th:if="${authorized == 'true'}">
+        <span><a th:href="@{/logout}">Logout</a></span>
+    </span>
+</header>
+<div style="width: 80%; background-color: bisque; margin: 0 auto;">
+    <div style="width: 95%; margin: 15px auto;">
+        <h4 th:text="${article.getHeading()}">heading</h4>
+        <p th:text="${article.getContent()}">content</p>
+        <a th:href="@{/users/list/{id}(id=${article.getAuthorId()})}"><p th:text="${article.getAuthorName()}">author</p></a>
+        <p>
+            Published date: <span th:text="${article.getStringDate()}"></span>
+        </p>
+        <p>
+            <a th:href="@{/{id}/like(id=${article.getId()})}">
+                <span>Likes:</span>
+                <span th:text="${article.getLikes()}">*likes*</span>
+            </a>
+        </p>
+        <div th:if="${changeable == 'true'}">
+            <p>
+            <form th:method="GET" th:action="@{/{id}/edit(id=${article.getId()})}">
+                <input type="submit" value="Edit">
+            </form>
+            <form th:method="DELETE" th:action="@{/{id}(id=${article.getId()})}">
+                <input type="submit" value="Delete">
+            </form>
+            </p>
+        </div>
+
+        <hr/>
+        <p><a th:href="@{/}">Back to main page</a></p>
+    </div>
+</div>
+
+</body>
+</html>

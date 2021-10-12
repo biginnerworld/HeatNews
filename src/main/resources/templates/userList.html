@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body style="margin: 0px; background-color: burlywood">
+<header style="padding: 15px; background-color: aquamarine">
+  <span style="font-size: 30px; margin-left: 15%"><a style="color: black; text-decoration: none" th:href="@{/}">HeatNews</a></span>
+  <span style="margin-right: 20px; margin-left: 20px; font-size: 28px">||</span>
+  <span style="font-size: 24px">List of Users</span>
+</header>
+
+<table border="2px">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="user : ${users}">
+      <td><a th:utext="${user.getUsername()}" th:href="@{/users/list/{id}(id=${user.getId()})}">name</a></td>
+      <td th:utext="${user.getRole().name()}">role</td>
+      <td>action</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
