@@ -1,13 +1,13 @@
 ## HeatNews
 It's a web server that designed for posting articles.
 
-#What is it?
+# What is it?
 This is a server that allows users to post articles.
 This server was written on java.
 It was created with help of the Spring Framework, Apache Tomcat, Thymeleaf Template and Hibernate.
 As a database was used PostgreSQL.
 
-#What features have been implemented?
+# What features have been implemented?
 Registration and authorization systems were implemented to the server.
 When registering, the fields are checked for validity.
 The server is secured by Spring Security. Some actions are prohibited for unlogged users or users that have no permissions to this actions.
